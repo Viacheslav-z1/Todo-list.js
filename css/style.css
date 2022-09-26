@@ -1,0 +1,137 @@
+@font-face {
+  font-family: 'Inter-SemiBold';
+  src: local('Inter-SemiBold');
+  src: url('../fonts/Inter-SemiBold.woff2') format('woff2'),
+    url('../fonts/Inter-SemiBold.woff') format('woff');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+
+
+body{
+  background-color: #1f1f48;
+  color: #fff;
+  font-family: 'Inter-SemiBold', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.container{
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header{
+  background-color: #1f1f48;
+  padding: 20px;
+}
+.header__text{
+  text-transform: uppercase;
+  columns: #fff;
+  text-align: center;
+  font-size: 22px;
+}
+
+.add{
+  padding: 20px;
+}
+
+
+.add__wrapper{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content__todo-block{
+  background-color: #1c1c40;
+  border: 2px solid #fff;
+  border-radius: 40px;
+  padding: 20px 10px;
+  margin-bottom: 20px;
+
+  -webkit-box-shadow: 6px 7px 24px 0px rgba(110, 43, 110, 0.79);
+    -moz-box-shadow: 6px 7px 24px 0px rgba(110, 43, 110, 0.79);
+    box-shadow: 6px 7px 24px 0px rgba(110, 43, 110, 0.79);
+}
+
+.content__todo-top__wrapper{
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content__todo-list__li{
+  border: 1px solid rgb(233, 239, 43);
+  padding: 10px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  list-style: none;
+  -webkit-box-shadow: 6px 7px 24px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 6px 7px 24px 0px rgba(0, 0, 0, 1);
+    box-shadow: 6px 7px 24px 0px rgba(0, 0, 0, 1);
+}
+
+.content__todo-name{
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.content__todo-text{
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.content__title{
+  margin-bottom: 20px;
+}
+
+.content__todo-btns{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.content__todo-status_ball{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.go{
+  background-color: rgb(171, 16, 16);
+}
+
+.progress{
+  background-color: rgb(245, 200, 0);
+}
+.done{
+  background-color: rgb(8, 175, 22);
+}
+.btns,
+.add__todo{
+  background-color: transparent;
+  border: 1px solid rgb(125, 118, 118);
+  border-radius: 20px;
+  color: #fff;
+  padding: 5px;
+  cursor: pointer;
+  font-family: 'Inter-SemiBold', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+.add__todo {
+  padding: 10px;
+}
+.content__todo-go{
+  border-color: rgb(8, 175, 22);
+}
+
+.content__todo-delete{
+  border-color: rgb(171, 16, 16);
+}
