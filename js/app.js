@@ -6,32 +6,64 @@ window.addEventListener('DOMContentLoaded', () => {
     deleteBtnDone = document.querySelectorAll('[data-done]'),
     allLi = document.querySelectorAll('.all-js'),
     doneLi = document.querySelectorAll('.done-li'),
-    inProgres = document.querySelectorAll('.in-progress');
+    inProgres = document.querySelectorAll('.in-progress'),
+    deleteOn = document.querySelector('.delete-on'),
+    closeModalDeleteBtn = document.querySelector('[data-close-delete-modal]'),
+    deleteModal = document.querySelector('.delete-modal');
 
   /*Видалення Завдань */
   deleteBtnAll.forEach((item, i) => {
     item.addEventListener('click', function (e) {
+      e.preventDefault();
       const target = e.target;
       if (target === deleteBtnAll[i]) {
-        deleteLi(allLi, i);
+        showModal(deleteModal);
+        deleteOn.addEventListener('click',function () {
+          deleteLi(allLi, i);
+          closeModal(deleteModal);
+        });
+        closeModalDeleteBtn.addEventListener('click',function (e) {
+          e.preventDefault();
+          closeModal(deleteModal);
+        });
       }
     });
   });
   /*Видалення Завдань які виконуються завдань*/
   deleteBtnInProgress.forEach((item, i) => {
     item.addEventListener('click', function (e) {
+      e.preventDefault();
       const target = e.target;
       if (target === deleteBtnInProgress[i]) {
-        deleteLi(inProgres, i);
+        showModal(deleteModal);
+        deleteOn.addEventListener('click', function (e) {
+          e.preventDefault();
+          deleteLi(inProgres, i);
+          closeModal(deleteModal);
+        });
+        closeModalDeleteBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          closeModal(deleteModal);
+        });
       }
     });
   });
   /*Видалення виконанених завдань*/
   deleteBtnDone.forEach((item, i) => {
     item.addEventListener('click', function (e) {
+      e.preventDefault();
       const target = e.target;
       if (target === deleteBtnDone[i]) {
-        deleteLi(doneLi, i);
+        showModal(deleteModal);
+        deleteOn.addEventListener('click', function (e) {
+          e.preventDefault();
+          deleteLi(doneLi, i);
+          closeModal(deleteModal);
+        });
+        closeModalDeleteBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          closeModal(deleteModal);
+        });
       }
     });
   });
@@ -53,7 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-  
+
 
   /////Modal logik
 

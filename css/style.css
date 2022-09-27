@@ -104,25 +104,6 @@ body{
   border-radius: 50%;
 }
 
-.go{
-  background-color: rgb(171, 16, 16);
-}
-
-.progress{
-  background-color: rgb(245, 200, 0);
-}
-.done{
-  background-color: rgb(8, 175, 22);
-}
-.red{
-  border-color: rgb(171, 16, 16);
-}
-.orange{
-  border-color: rgb(245, 200, 0);
-}
-.green{
-  border-color: rgb(8, 175, 22);
-}
 .btns,
 .add__todo{
   background-color: transparent;
@@ -240,10 +221,42 @@ body{
   display: flex;
   justify-content: center;
 }
+.modal__title-mb{
+  margin-bottom: 30px;
+}
+.modal__add-question-wrap{
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  gap: 15px;
+}
 .hide {
   display: none;
 }
 
 .show {
   display: block;
+}
+.go {
+  background-color: rgb(171, 16, 16);
+}
+
+.progress {
+  background-color: rgb(245, 200, 0);
+}
+
+.done {
+  background-color: rgb(8, 175, 22);
+}
+
+.red {
+  border-color: rgb(171, 16, 16);
+}
+
+.orange {
+  border-color: rgb(245, 200, 0);
+}
+
+.green {
+  border-color: rgb(8, 175, 22);
 }
