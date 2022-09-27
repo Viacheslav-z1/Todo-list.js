@@ -34,12 +34,48 @@
       <div class="content__todo-block red">
         <h2 class="content__title">Всі справи : <span class="content__todo-block-all">2</span></h2>
         <ul class="content__todo-list">
-          <li class="content__todo-list__li">
+          <li class="content__todo-list__li all-js">
             <div class="content__todo-top__wrapper">
-              <p class="content__todo-name">Lorem ipsupsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitm dolor sit.</p>
+              <p class="content__todo-name">Lorem ipsupsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitm dolor sit. 1</p>
               <div class="content__todo-btns">
                 <button class="content__todo-go btns">Почати виконання</button>
-                <button class="content__todo-delete btns">Видалити</button>
+                <button data-deleteAll class="content__todo-delete btns">Видалити</button>
+                <div class="content__todo-status_ball go"></div>
+              </div>
+            </div>
+            <div class="content__todo-botton__wrapper">
+              <p class="content__todo-text">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel autem nisi architecto ad voluptatem maxime
+                iusto magni. Perferendis consequatur nihil mollitia labore, fuga quia accusamus tempore maxime explicabo
+                tenetur aspernatur!
+              </p>
+            </div>
+          </li>
+          <li class="content__todo-list__li all-js">
+            <div class="content__todo-top__wrapper">
+              <p class="content__todo-name">Lorem ipsupsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitpsum
+                dolor sitpsum dolor sitm dolor sit. 2</p>
+              <div class="content__todo-btns">
+                <button class="content__todo-go btns">Почати виконання</button>
+                <button data-deleteAll class="content__todo-delete btns">Видалити</button>
+                <div class="content__todo-status_ball go"></div>
+              </div>
+            </div>
+            <div class="content__todo-botton__wrapper">
+              <p class="content__todo-text">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel autem nisi architecto ad voluptatem maxime
+                iusto magni. Perferendis consequatur nihil mollitia labore, fuga quia accusamus tempore maxime explicabo
+                tenetur aspernatur!
+              </p>
+            </div>
+          </li>
+          <li class="content__todo-list__li all-js">
+            <div class="content__todo-top__wrapper">
+              <p class="content__todo-name">Lorem ipsupsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitpsum dolor sitpsum
+                dolor sitpsum dolor sitm dolor sit. 3</p>
+              <div class="content__todo-btns">
+                <button class="content__todo-go btns">Почати виконання</button>
+                <button data-deleteAll class="content__todo-delete btns">Видалити</button>
                 <div class="content__todo-status_ball go"></div>
               </div>
             </div>
@@ -56,13 +92,13 @@
 
       <div class="content__todo-block orange">
         <h2 class="content__title">У виконанні : <span class="content__todo-block-inprogress">2</span></h2>
-        <ul class="content__todo-list">
-          <li class="content__todo-list__li">
+        <ul class="content__todo-list ">
+          <li class="content__todo-list__li in-progress">
             <div class="content__todo-top__wrapper">
               <p class="content__todo-name">Lorem ipsum dolor sit.</p>
               <div class="content__todo-btns">
                 <button class="content__todo-go btns">Завершити</button>
-                <button class="content__todo-delete btns">Видалити</button>
+                <button data-inProgress class="content__todo-delete btns">Видалити</button>
                 <div class="content__todo-status_ball progress"></div>
               </div>
             </div>
@@ -70,7 +106,24 @@
               <p class="content__todo-text">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel autem nisi architecto ad voluptatem maxime
                 iusto magni. Perferendis consequatur nihil mollitia labore, fuga quia accusamus tempore maxime explicabo
-                tenetur aspernatur!
+                tenetur aspernatur!1
+              </p>
+            </div>
+          </li>
+          <li class="content__todo-list__li in-progress">
+            <div class="content__todo-top__wrapper">
+              <p class="content__todo-name">Lorem ipsum dolor sit.</p>
+              <div class="content__todo-btns">
+                <button class="content__todo-go btns">Завершити</button>
+                <button data-inProgress class="content__todo-delete btns">Видалити</button>
+                <div class="content__todo-status_ball progress"></div>
+              </div>
+            </div>
+            <div class="content__todo-botton__wrapper">
+              <p class="content__todo-text">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel autem nisi architecto ad voluptatem maxime
+                iusto magni. Perferendis consequatur nihil mollitia labore, fuga quia accusamus tempore maxime explicabo
+                tenetur aspernatur!2
               </p>
             </div>
           </li>
@@ -80,11 +133,11 @@
       <div class="content__todo-block green">
         <h2 class="content__title">Виконані : <span class="content__todo-block-progress">2</span></h2>
         <ul class="content__todo-list">
-          <li class="content__todo-list__li">
+          <li class="content__todo-list__li done-li">
             <div class="content__todo-top__wrapper">
               <p class="content__todo-name">Lorem ipsum dolor sit.</p>
               <div class="content__todo-btns">
-                <button class="content__todo-delete btns">Видалити</button>
+                <button data-done class="content__todo-delete btns">Видалити</button>
                 <div class="content__todo-status_ball done"></div>
               </div>
             </div>
@@ -92,7 +145,39 @@
               <p class="content__todo-text">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel autem nisi architecto ad voluptatem maxime
                 iusto magni. Perferendis consequatur nihil mollitia labore, fuga quia accusamus tempore maxime explicabo
-                tenetur aspernatur!
+                tenetur aspernatur! 1
+              </p>
+            </div>
+          </li>
+          <li class="content__todo-list__li done-li">
+            <div class="content__todo-top__wrapper">
+              <p class="content__todo-name">Lorem ipsum dolor sit.</p>
+              <div class="content__todo-btns">
+                <button data-done class="content__todo-delete btns">Видалити</button>
+                <div class="content__todo-status_ball done"></div>
+              </div>
+            </div>
+            <div class="content__todo-botton__wrapper">
+              <p class="content__todo-text">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel autem nisi architecto ad voluptatem maxime
+                iusto magni. Perferendis consequatur nihil mollitia labore, fuga quia accusamus tempore maxime explicabo
+                tenetur aspernatur! 2
+              </p>
+            </div>
+          </li>
+          <li class="content__todo-list__li done-li">
+            <div class="content__todo-top__wrapper">
+              <p class="content__todo-name">Lorem ipsum dolor sit.</p>
+              <div class="content__todo-btns">
+                <button data-done class="content__todo-delete btns">Видалити</button>
+                <div class="content__todo-status_ball done"></div>
+              </div>
+            </div>
+            <div class="content__todo-botton__wrapper">
+              <p class="content__todo-text">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel autem nisi architecto ad voluptatem maxime
+                iusto magni. Perferendis consequatur nihil mollitia labore, fuga quia accusamus tempore maxime explicabo
+                tenetur aspernatur!3
               </p>
             </div>
           </li>

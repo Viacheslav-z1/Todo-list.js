@@ -1,4 +1,40 @@
-window.addEventListener('DOMContentLoaded',() =>{
+window.addEventListener('DOMContentLoaded', () => {
+
+  /*змінні для видалення*/
+  const deleteBtnAll = document.querySelectorAll('[data-deleteAll]'),
+    deleteBtnInProgress = document.querySelectorAll('[data-inProgress]'),
+    deleteBtnDone = document.querySelectorAll('[data-done]'),
+    allLi = document.querySelectorAll('.all-js'),
+    doneLi = document.querySelectorAll('.done-li'),
+    inProgres = document.querySelectorAll('.in-progress');
+
+  /*Видалення Завдань */
+  deleteBtnAll.forEach((item, i) => {
+    item.addEventListener('click', function (e) {
+      const target = e.target;
+      if (target === deleteBtnAll[i]) {
+        deleteLi(allLi, i);
+      }
+    });
+  });
+  /*Видалення Завдань які виконуються завдань*/
+  deleteBtnInProgress.forEach((item, i) => {
+    item.addEventListener('click', function (e) {
+      const target = e.target;
+      if (target === deleteBtnInProgress[i]) {
+        deleteLi(inProgres, i);
+      }
+    });
+  });
+  /*Видалення виконанених завдань*/
+  deleteBtnDone.forEach((item, i) => {
+    item.addEventListener('click', function (e) {
+      const target = e.target;
+      if (target === deleteBtnDone[i]) {
+        deleteLi(doneLi, i);
+      }
+    });
+  });
 
 
 
@@ -17,9 +53,9 @@ window.addEventListener('DOMContentLoaded',() =>{
 
 
 
+  
 
-
-/////Modal logik
+  /////Modal logik
 
   const btnAdd = document.querySelector('[data-add]'),
     modal = document.querySelector('.modal'),
@@ -38,7 +74,11 @@ window.addEventListener('DOMContentLoaded',() =>{
     body.style.overflow = '';
   }
 
-  btnAdd.addEventListener('click',() =>{
+  function deleteLi(list, index) {
+    list[index].remove();
+  }
+
+  btnAdd.addEventListener('click', () => {
     showModal(modal);
   });
 
@@ -49,7 +89,10 @@ window.addEventListener('DOMContentLoaded',() =>{
     }
   });
 
-  modalClose.addEventListener('click',()=>{
+  modalClose.addEventListener('click', () => {
     closeModal(modal);
   });
-});
+
+
+
+})
