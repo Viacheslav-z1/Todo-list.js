@@ -1,0 +1,71 @@
+@media(max-width: 990px){
+  .content__todo-name{
+    max-width: 400px;
+    font-size: 19px;
+    line-height: 23px;
+  }
+    .content__todo-text{
+      font-size: 15px;
+    }
+    .content__todo-block{
+      padding: 15px 10px;
+      border-radius: 25px;
+    }
+
+  body{
+    font-size: 16px;
+  }
+}
+@media(max-width: 850px) {
+  .content__todo-name {
+    max-width: 300px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+@media(max-width: 750px) {
+  .content__todo-top__wrapper{
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    
+  }
+  .content__todo-name{
+    max-width: 100%;
+  }
+}
+@media(max-width: 500px) {
+  .content__todo-name {
+    font-size: 16px;
+  }
+  .content__todo-top__wrapper{
+    gap: 10px;
+  }
+  .content__todo-btns{
+    gap: 10px;
+  }
+  .content__todo-text{
+    font-size: 14px;
+  }
+  .content__title{
+    margin-bottom: 10px;
+  }
+    .content__todo-list__li{
+      padding: 13px;
+    }
+    .btns{
+      padding: 6px;
+      font-size: 15px;
+    }
+    .content__todo-btns{
+      gap: 7px;
+    }
+}
+@media(max-width: 390px) {
+.content__todo-btns{
+  flex-wrap: wrap;
+}
+.content__todo-go{
+  width: 100%;
+}
+}

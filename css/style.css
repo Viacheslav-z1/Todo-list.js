@@ -49,7 +49,7 @@ body{
   background-color: #1c1c40;
   border: 2px solid #fff;
   border-radius: 40px;
-  padding: 20px 10px;
+  padding: 16px 15px;
   margin-bottom: 20px;
 
   -webkit-box-shadow: 6px 7px 24px 0px rgba(110, 43, 110, 0.79);
@@ -67,7 +67,7 @@ body{
 
 .content__todo-list__li{
   border: 1px solid rgb(233, 239, 43);
-  padding: 10px;
+  padding: 15px;
   border-radius: 30px;
   margin-bottom: 20px;
   list-style: none;
@@ -79,6 +79,7 @@ body{
 .content__todo-name{
   font-size: 22px;
   line-height: 26px;
+  max-width: 500px;
 }
 
 .content__todo-text{
@@ -113,13 +114,22 @@ body{
 .done{
   background-color: rgb(8, 175, 22);
 }
+.red{
+  border-color: rgb(171, 16, 16);
+}
+.orange{
+  border-color: rgb(245, 200, 0);
+}
+.green{
+  border-color: rgb(8, 175, 22);
+}
 .btns,
 .add__todo{
   background-color: transparent;
   border: 1px solid rgb(125, 118, 118);
   border-radius: 20px;
   color: #fff;
-  padding: 5px;
+  padding: 7px;
   cursor: pointer;
   font-family: 'Inter-SemiBold', sans-serif;
   font-weight: 600;
