@@ -11,63 +11,80 @@ window.addEventListener('DOMContentLoaded', () => {
     closeModalDeleteBtn = document.querySelector('[data-close-delete-modal]'),
     deleteModal = document.querySelector('.delete-modal');
 
+
+
+
   /*Видалення Завдань */
   deleteBtnAll.forEach((item, i) => {
+    function deleteTaskLocal(e) {
+      e.preventDefault();
+      deleteLi(allLi, i);
+      closeModal(deleteModal);
+    }
     item.addEventListener('click', function (e) {
       e.preventDefault();
+      let touch = 'false';
       const target = e.target;
-      if (target === deleteBtnAll[i]) {
-        showModal(deleteModal);
-        deleteOn.addEventListener('click',function () {
-          deleteLi(allLi, i);
-          closeModal(deleteModal);
-        });
-        closeModalDeleteBtn.addEventListener('click',function (e) {
-          e.preventDefault();
-          closeModal(deleteModal);
-        });
-      }
+      showModal(deleteModal);
+      deleteOn.addEventListener('click', deleteTaskLocal);
+      closeModalDeleteBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        closeModal(deleteModal);
+        deleteOn.removeEventListener('click', deleteTaskLocal);
+      });
     });
   });
   /*Видалення Завдань які виконуються завдань*/
   deleteBtnInProgress.forEach((item, i) => {
+    function deleteTaskLocal(e) {
+      e.preventDefault();
+      deleteLi(inProgres, i);
+      closeModal(deleteModal);
+    }
     item.addEventListener('click', function (e) {
       e.preventDefault();
       const target = e.target;
       if (target === deleteBtnInProgress[i]) {
         showModal(deleteModal);
-        deleteOn.addEventListener('click', function (e) {
-          e.preventDefault();
-          deleteLi(inProgres, i);
-          closeModal(deleteModal);
-        });
+        deleteOn.addEventListener('click', deleteTaskLocal);
         closeModalDeleteBtn.addEventListener('click', function (e) {
           e.preventDefault();
           closeModal(deleteModal);
+          deleteOn.removeEventListener('click', deleteTaskLocal);
         });
       }
     });
   });
   /*Видалення виконанених завдань*/
   deleteBtnDone.forEach((item, i) => {
+    function deleteTaskLocal(e) {
+      e.preventDefault();
+      deleteLi(doneLi, i);
+      closeModal(deleteModal);
+    }
     item.addEventListener('click', function (e) {
       e.preventDefault();
       const target = e.target;
       if (target === deleteBtnDone[i]) {
         showModal(deleteModal);
-        deleteOn.addEventListener('click', function (e) {
-          e.preventDefault();
-          deleteLi(doneLi, i);
-          closeModal(deleteModal);
-        });
+        deleteOn.addEventListener('click', deleteTaskLocal);
         closeModalDeleteBtn.addEventListener('click', function (e) {
           e.preventDefault();
           closeModal(deleteModal);
+          deleteOn.removeEventListener('click', deleteTaskLocal);
         });
       }
     });
   });
 
+  /*Функ видалення завдання */
+  function deleteLi(list, index) {
+    list[index].classList.add('fade-out');
+    setTimeout(() => {
+      list[index].remove();
+    }, 600);
+
+  }
 
 
 
@@ -108,19 +125,17 @@ window.addEventListener('DOMContentLoaded', () => {
     modalWindow.classList.add('fade-out');
 
     setTimeout(() => {
-    modalWindow.classList.add('hide');
-    modalWindow.classList.remove('show');
+      modalWindow.classList.add('hide');
+      modalWindow.classList.remove('show');
     }, 550);
-  
+
     setTimeout(() => {
       modalWindow.classList.remove('fade-out');
     }, 600);
     body.style.overflow = '';
   }
 
-  function deleteLi(list, index) {
-    list[index].remove();
-  }
+
 
   btnAdd.addEventListener('click', () => {
     showModal(modal);
