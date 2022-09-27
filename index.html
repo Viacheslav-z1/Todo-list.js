@@ -23,7 +23,7 @@
 
   <section class="add">
     <div class="container add__wrapper">
-      <button class="add__todo">
+      <button data-add class="add__todo">
         Додати справу  +
       </button>
     </div>
@@ -101,7 +101,32 @@
     </div>
   </section>
 
-  <script src="js/app.js"></script>
+
+
+
+
+
+
+ 
+    
+    <div class="modal">
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <form action="#">
+            <div data-close class="modal__close">&times;</div>
+            <div class="modal__title">Додання нової справи</div>
+            <input required placeholder="Введіть назву справи" name="name" type="text" class="modal__input">
+            <!-- <input required placeholder="Введіть опис справи" name="name2" type="text" class="modal__input"> -->
+            <textarea name="textarea" placeholder="Введіть опис справи" class="modal__input modal__textarea" ></textarea>
+            <div class="modal__add-btn__wrapper">
+            <button class="btns modal__add-btn green">Додати</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
 </body>
 
 </html>

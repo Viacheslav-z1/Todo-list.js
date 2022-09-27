@@ -1,3 +1,8 @@
+@media(max-width: 1100px) {
+  .content__todo-name {
+    max-width: 500px;
+  }
+}
 @media(max-width: 990px){
   .content__todo-name{
     max-width: 400px;
@@ -67,5 +72,12 @@
 }
 .content__todo-go{
   width: 100%;
+}
+
+
+
+
+.modal__content{
+  padding: 40px 20px 20px 20px;
 }
 }
