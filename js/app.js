@@ -97,12 +97,24 @@ window.addEventListener('DOMContentLoaded', () => {
   function showModal(modalWindow) {
     modalWindow.classList.add('show');
     modalWindow.classList.remove('hide');
+    modalWindow.classList.add('fade');
+    setTimeout(() => {
+      modalWindow.classList.remove('fade');
+    }, 600);
     body.style.overflow = 'hidden';
   }
 
   function closeModal(modalWindow) {
-    modalWindow.classList.remove('show');
+    modalWindow.classList.add('fade-out');
+
+    setTimeout(() => {
     modalWindow.classList.add('hide');
+    modalWindow.classList.remove('show');
+    }, 550);
+  
+    setTimeout(() => {
+      modalWindow.classList.remove('fade-out');
+    }, 600);
     body.style.overflow = '';
   }
 
