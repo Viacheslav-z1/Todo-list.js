@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   /*Логіка */
 
- 
+
 
   const allListParent = document.querySelector('.content__todo-list'),
     addListBtn = document.querySelector('[data-add-new]'),
@@ -14,10 +14,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   let todoList = [];
+  let count;
+  count = todoList.length;
+
   if (localStorage.getItem('todo')) {
     todoList = JSON.parse(localStorage.getItem('todo'));
     updateList();
-  }else{
+  } else {
     if (todoList.length == 0) {
       const message = document.createElement('p');
       message.classList.add('message');
@@ -32,14 +35,13 @@ window.addEventListener('DOMContentLoaded', () => {
   function updateList() {
     allListParent.innerHTML = '';
     let todoLi = '';
-    if(todoList.length == 0){
-     const message = document.createElement('p');
+    if (todoList.length == 0) {
+      const message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'У вас немає завдань, натисніть + щоб додати';
       allListParent.append(message);
     }
     /*Кількість невиконаних справ */
-    let count;
     count = todoList.length;
     document.querySelector('.content__todo-block-all').innerHTML = count;
     console.log(count);
@@ -65,12 +67,10 @@ window.addEventListener('DOMContentLoaded', () => {
       allListParent.innerHTML = todoLi;
 
     });
-    let list = document.querySelectorAll('.all-js');
-    
+
     document.querySelectorAll('[data-deleteAll]').forEach((item, i) => {
       function deleteTaskLocal(e) {
         e.preventDefault();
-        // deleteLi(list, i);
         closeModal(deleteModal);
         console.log(todoList);
         todoList.splice(i, 1);
@@ -93,19 +93,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
   addListBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    if (nameTodo.value){
-    let newTtodo = {
-      todoName: nameTodo.value,
-      todoDescr: textTodo.value
-    };
-    todoList.push(newTtodo);
-    localStorage.setItem('todo', JSON.stringify(todoList));
-    updateList();
-    formAdd.reset();
-    closeModal(modal);
-  } else{
+    if (nameTodo.value && nameTodo.value.match(/^\s+$/) === null) {
+      let newTtodo = {
+        todoName: nameTodo.value,
+        todoDescr: textTodo.value
+      };
+      todoList.push(newTtodo);
+      localStorage.setItem('todo', JSON.stringify(todoList));
+      updateList();
+      formAdd.reset();
+      closeModal(modal);
+    } else {
       alert('Введіть назву завдання')
-  }
+    }
   });
 
 
