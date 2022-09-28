@@ -24,6 +24,11 @@ window.addEventListener('DOMContentLoaded', () => {
   function updateList() {
     allListParent.innerHTML = '';
     let todoLi = '';
+    /*Кількість невиконаних справ */
+    let count;
+    count = todoList.length;
+    document.querySelector('.content__todo-block-all').innerHTML = count;
+    console.log(count);
     todoList.forEach((item, i) => {
       todoLi += `
    <li class="content__todo-list__li all-js">
@@ -214,12 +219,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const btnAdd = document.querySelector('[data-add]'),
     modal = document.querySelector('.modal'),
     modalClose = document.querySelector('[data-close]'),
-    body = document.querySelector('body');
+    body = document.querySelector('body'),
+    blur = document.querySelector('.big-wrapper');
 
   function showModal(modalWindow) {
     modalWindow.classList.add('show');
     modalWindow.classList.remove('hide');
     modalWindow.classList.add('fade');
+    blur.classList.add('blur');
     setTimeout(() => {
       modalWindow.classList.remove('fade');
     }, 600);
@@ -228,7 +235,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function closeModal(modalWindow) {
     modalWindow.classList.add('fade-out');
-
+    blur.classList.remove('blur');
     setTimeout(() => {
       modalWindow.classList.add('hide');
       modalWindow.classList.remove('show');
