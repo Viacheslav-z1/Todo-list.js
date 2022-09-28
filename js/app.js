@@ -17,8 +17,15 @@ window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('todo')) {
     todoList = JSON.parse(localStorage.getItem('todo'));
     updateList();
+  }else{
+    if (todoList.length == 0) {
+      const message = document.createElement('p');
+      message.classList.add('message');
+      message.innerHTML = 'У вас немає завдань, натисніть + щоб додати';
+      allListParent.append(message);
+    }
   }
-  
+
 
 
 
