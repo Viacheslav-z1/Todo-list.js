@@ -24,6 +24,12 @@ window.addEventListener('DOMContentLoaded', () => {
   function updateList() {
     allListParent.innerHTML = '';
     let todoLi = '';
+    if(todoLi.length == 0){
+     const message = document.createElement('p');
+      message.classList.add('message');
+      message.innerHTML = 'У вас немає завдань, натисніть + щоб додати';
+      allListParent.append(message);
+    }
     /*Кількість невиконаних справ */
     let count;
     count = todoList.length;
@@ -79,6 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   addListBtn.addEventListener('click', function (e) {
     e.preventDefault();
+    if (nameTodo.value){
     let newTtodo = {
       todoName: nameTodo.value,
       todoDescr: textTodo.value
@@ -88,6 +95,9 @@ window.addEventListener('DOMContentLoaded', () => {
     updateList();
     formAdd.reset();
     closeModal(modal);
+  } else{
+      alert('Введіть назву завдання')
+  }
   });
 
 
