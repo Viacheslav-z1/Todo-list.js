@@ -18,13 +18,14 @@ window.addEventListener('DOMContentLoaded', () => {
     todoList = JSON.parse(localStorage.getItem('todo'));
     updateList();
   }
+  
 
 
 
   function updateList() {
     allListParent.innerHTML = '';
     let todoLi = '';
-    if(todoLi.length == 0){
+    if(todoList.length == 0){
      const message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'У вас немає завдань, натисніть + щоб додати';
