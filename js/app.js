@@ -37,28 +37,24 @@ window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('progres')) {
     progresTodoList = JSON.parse(localStorage.getItem('progres'));
     updateProgresList();
-  } else {
-    if (progresTodoList.length == 0) {
+  } else if (progresTodoList.length == 0) {
       const message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'Почніть додавати справи, щоб їх виконувати';
       inProgresList.append(message);
     }
-  }
+  
 
   if (localStorage.getItem('done')) {
     doneTodoList = JSON.parse(localStorage.getItem('done'));
     updateProgresList();
     updateDoneList();
-  } else {
-    if (doneTodoList.length == 0) {
+  } else if (doneTodoList.length == 0) {
       const message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'У Вас немає виконаних справ';
       doneList.append(message);
     }
-  }
-
 
 
   addListBtn.addEventListener('click', function (e) {
