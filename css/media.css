@@ -83,8 +83,15 @@
   .content__todo-btns {
     gap: 7px;
   }
-  .modal__dialog{
+
+  .modal__dialog {
     margin-top: 25px;
+  }
+
+  .big-modal-text {
+    text-align: center;
+    font-size: 25px;
+    line-height: 30px;
   }
 
 }

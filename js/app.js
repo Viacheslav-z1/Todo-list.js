@@ -8,10 +8,29 @@ window.addEventListener('DOMContentLoaded', () => {
     deleteOn = document.querySelector('.delete-on'),
     inProgresList = document.querySelector('.in-progres-list'),
     doneList = document.querySelector('.done-list'),
-    doneModal = document.querySelector('.done-modal');
+    doneModal = document.querySelector('.done-modal'),
+    helloModal = document.querySelector('.big-modal');
   let nameTodo = document.querySelector('[data-name]');
   let textTodo = document.querySelector('[data-text]');
 
+  /*Змінні для модалок */
+  const deleteModal = document.querySelector('.delete-modal'),
+    runModal = document.querySelector('.run-modal'),
+    runBtn = document.querySelector('.run-on'),
+    closeRunModal = document.querySelector('[data-close-run-modal]'),
+    blur = document.querySelector('.big-wrapper'),
+    btnAdd = document.querySelector('[data-add]'),
+    modal = document.querySelector('.modal'),
+    modalClose = document.querySelector('[data-close]'),
+    body = document.querySelector('body');
+
+
+  setTimeout(() => {
+    setTimeout(() => {
+      helloModal.classList.add('hide');
+    }, 1200);
+    helloModal.classList.add('fade-out-long');
+  }, 1500);
 
   let todoList = [];
   let progresTodoList = [];
@@ -20,41 +39,24 @@ window.addEventListener('DOMContentLoaded', () => {
   count = todoList.length;
 
   //підргузка данних
+
   if (localStorage.getItem('todo')) {
     todoList = JSON.parse(localStorage.getItem('todo'));
     updateList();
     updateProgresList();
     updateDoneList();
-  } else if (todoList.length == 0) {
-      const message = document.createElement('p');
-      message.classList.add('message');
-      message.innerHTML = 'У вас немає завдань, натисніть + щоб додати';
-      allListParent.append(message);
-    }
-  
+  } 
 
   if (localStorage.getItem('progres')) {
     progresTodoList = JSON.parse(localStorage.getItem('progres'));
     updateProgresList();
-   } else if (progresTodoList.length == 0) {
-      message = document.createElement('p');
-      message.classList.add('message');
-      message.innerHTML = 'Почніть додавати справи, щоб їх виконувати';
-      inProgresList.append(message);
-    }
-  
+   } 
 
   if (localStorage.getItem('done')) {
     doneTodoList = JSON.parse(localStorage.getItem('done'));
     updateProgresList();
     updateDoneList();
-  } else if (doneTodoList.length == 0) {
-     message = document.createElement('p');
-      message.classList.add('message');
-      message.innerHTML = 'У Вас немає виконаних справ';
-      doneList.append(message);
-    }
-
+  } 
 
   addListBtn.addEventListener('click', function (e) {
     e.preventDefault();
@@ -304,11 +306,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /*змінні для видалення*/
-  const deleteModal = document.querySelector('.delete-modal'),
-    runModal = document.querySelector('.run-modal'),
-    runBtn = document.querySelector('.run-on'),
-    closeRunModal = document.querySelector('[data-close-run-modal]');
+
 
   /*Функ видалення завдання */
   function deleteLi(list, index) {
@@ -321,11 +319,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   /////Modal logik
 
-  const btnAdd = document.querySelector('[data-add]'),
-    modal = document.querySelector('.modal'),
-    modalClose = document.querySelector('[data-close]'),
-    body = document.querySelector('body'),
-    blur = document.querySelector('.big-wrapper');
+
 
   function showModal(modalWindow) {
     modalWindow.classList.add('show');

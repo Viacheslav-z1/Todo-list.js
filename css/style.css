@@ -37,6 +37,7 @@ body{
 .blur{
 filter: blur(2px);
 }
+
 .header{
   background-color: #1f1f48;
   padding: 20px;
@@ -246,13 +247,7 @@ filter: blur(2px);
   justify-self: start;
   gap: 15px;
 }
-.hide {
-  display: none;
-}
 
-.show {
-  display: block;
-}
 .go {
   background-color: rgb(171, 16, 16);
 }
@@ -281,6 +276,36 @@ filter: blur(2px);
   animation-name: fade;
   animation-duration: 0.6s;
 }
+
+
+  .modal__dialog{
+    max-width: 100%;
+    height: 100vh;
+  }
+ .big-modal-dialog{
+  position: relative;
+    padding: 0 40px 40px 40px;
+    background-color: rgb(16 26 52);
+    border: 1px solid rgb(54, 149, 28, .5);
+    border-radius: 4px;
+    overflow-y: auto;
+  height: 100vh !important;
+ }
+ .big-modal-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+ }
+ .big-modal-text{
+  text-align: center;
+  font-size: 35px;
+  line-height: 40px;
+ }
+ .big-modal {
+   display: block;
+ }
+
 @keyframes fade {
   from {
     opacity: 0;
@@ -294,6 +319,10 @@ filter: blur(2px);
   animation-name: fade-out;
   animation-duration: 0.6s;
 }
+.fade-out-long{
+  animation-name: fade-out;
+  animation-duration: 1.3s;
+}
 
 @keyframes fade-out {
   from {
@@ -303,4 +332,11 @@ filter: blur(2px);
   to {
     opacity: 0;
   }
+}
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }
