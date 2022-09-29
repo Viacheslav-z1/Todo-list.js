@@ -7,21 +7,24 @@ window.addEventListener('DOMContentLoaded', () => {
     closeModalDeleteBtn = document.querySelector('[data-close-delete-modal]'),
     deleteOn = document.querySelector('.delete-on'),
     inProgresList = document.querySelector('.in-progres-list'),
-    doneModal = document.querySelector('.done-modal'),
-    doneBtn = document.querySelector('.done-btn');
-  // let allLi = document.querySelectorAll('.all-js');
+    doneList = document.querySelector('.done-list'),
+    doneModal = document.querySelector('.done-modal');
   let nameTodo = document.querySelector('[data-name]');
   let textTodo = document.querySelector('[data-text]');
 
 
   let todoList = [];
   let progresTodoList = [];
+  let doneTodoList = [];
   let count;
   count = todoList.length;
 
+  //підргузка данниї
   if (localStorage.getItem('todo')) {
     todoList = JSON.parse(localStorage.getItem('todo'));
     updateList();
+    updateProgresList();
+    updateDoneList();
   } else {
     if (todoList.length == 0) {
       const message = document.createElement('p');
@@ -33,8 +36,27 @@ window.addEventListener('DOMContentLoaded', () => {
 
   if (localStorage.getItem('progres')) {
     progresTodoList = JSON.parse(localStorage.getItem('progres'));
-    updateList();
     updateProgresList();
+  } else {
+    if (progresTodoList.length == 0) {
+      const message = document.createElement('p');
+      message.classList.add('message');
+      message.innerHTML = 'Почніть додавати справи, щоб їх виконувати';
+      inProgresList.append(message);
+    }
+  }
+
+  if (localStorage.getItem('done')) {
+    doneTodoList = JSON.parse(localStorage.getItem('done'));
+    updateProgresList();
+    updateDoneList();
+  } else {
+    if (doneTodoList.length == 0) {
+      const message = document.createElement('p');
+      message.classList.add('message');
+      message.innerHTML = 'У Вас немає виконаних справ';
+      doneList.append(message);
+    }
   }
 
 
@@ -115,32 +137,33 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     });
     /*Початок виконання справи */
-    document.querySelectorAll('[data-go]').forEach((item, i) => {
-      function addTaskToInProgress(e) {
-        e.preventDefault();
-        let copyProgressObj = JSON.parse(JSON.stringify(todoList[i]));
-        progresTodoList.push(copyProgressObj);
-        updateProgresList();
-        todoList.splice(i, 1);
-        updateList();
-        closeModal(runModal);
-        runBtn.removeEventListener('click', addTaskToInProgress);
-        localStorage.setItem('todo', JSON.stringify(todoList));
-        localStorage.setItem('progres', JSON.stringify(progresTodoList));
-      }
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        showModal(runModal);
-        console.log(todoList);
-        console.log(progresTodoList);
-        runBtn.addEventListener('click', addTaskToInProgress);
-        closeRunModal.addEventListener('click', (e) => {
+      document.querySelectorAll('[data-go]').forEach((item, i) => {
+        function addTaskToInProgress(e) {
           e.preventDefault();
+          let copyProgressObj = JSON.parse(JSON.stringify(todoList[i]));
+          progresTodoList.push(copyProgressObj);
+          updateProgresList();
+          todoList.splice(i, 1);
+          updateList();
           closeModal(runModal);
+          localStorage.setItem('todo', JSON.stringify(todoList));
+          localStorage.setItem('progres', JSON.stringify(progresTodoList));
           runBtn.removeEventListener('click', addTaskToInProgress);
+
+        }
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          showModal(runModal);
+          console.log(todoList);
+          console.log(progresTodoList);
+          runBtn.addEventListener('click', addTaskToInProgress);
+          closeRunModal.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal(runModal);
+            runBtn.removeEventListener('click', addTaskToInProgress);
+          });
         });
       });
-    });
   }
 
 
@@ -177,14 +200,98 @@ window.addEventListener('DOMContentLoaded', () => {
       `;
       inProgresList.innerHTML = progresLi;
 
+    });
+
+    /*видалення справи*/
+    document.querySelectorAll('[data-inProgress]').forEach((item, i) => {
+      function deleteTaskLocal(e) {
+        e.preventDefault();
+        closeModal(deleteModal);
+        progresTodoList.splice(i, 1);
+        updateProgresList();
+        localStorage.setItem('progres', JSON.stringify(progresTodoList));
+        deleteOn.removeEventListener('click', deleteTaskLocal);
+      }
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        showModal(deleteModal);
+        deleteOn.addEventListener('click', deleteTaskLocal);
+        closeModalDeleteBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          closeModal(doneModal);
+          item.removeEventListener('click', deleteTaskLocal);/*перевірка на відхилення додання завдання*/
+        });
+      });
+    });
+
+    /*Завешеня  справи */
+    document.querySelectorAll('[data-done-task]').forEach((item, i) => {
+      function addTaskToInProgress(e) {
+        e.preventDefault();
+        let copyProgressObj = JSON.parse(JSON.stringify(progresTodoList[i]));
+        doneTodoList.push(copyProgressObj);
+        progresTodoList.splice(i, 1);
+        updateProgresList();
+        updateDoneList();
+        closeModal(runModal);
+        runBtn.removeEventListener('click', addTaskToInProgress);
+        localStorage.setItem('done', JSON.stringify(doneTodoList));
+        localStorage.setItem('progres', JSON.stringify(progresTodoList));
+      }
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        showModal(runModal);
+        console.log(todoList);
+        console.log(progresTodoList);
+        runBtn.addEventListener('click', addTaskToInProgress);
+        closeRunModal.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeModal(runModal);
+          runBtn.removeEventListener('click', addTaskToInProgress);
+        });
+      });
+    });
+  }
+
+  function updateDoneList() {
+    doneList.innerHTML = '';
+    if (doneTodoList.length == 0) {
+      const message = document.createElement('p');
+      message.classList.add('message');
+      message.innerHTML = 'У Вас немає виконаних справ';
+      doneList.append(message);
+    }
+    /*Кількість невиконаних справ */
+    count = doneTodoList.length;
+    document.querySelector('.content__todo-block-done').innerHTML = count;
+    let doneLi = '';
+    doneTodoList.forEach((item, i) => {
+      doneLi += `
+      <li class="content__todo-list__li done-li">
+            <div class="content__todo-top__wrapper">
+              <p class="content__todo-name">${item.todoName}</p>
+              <div class="content__todo-btns">
+                <button data-done class="content__todo-delete btns">Видалити</button>
+                <div class="content__todo-status_ball done"></div>
+              </div>
+            </div>
+            <div class="content__todo-botton__wrapper">
+              <p class="content__todo-text">
+                  ${item.todoDescr}
+              </p>
+            </div>
+          </li>    `;
+      doneList.innerHTML = doneLi;
+
+
       /*видалення справи*/
-      document.querySelectorAll('[data-inProgress]').forEach((item, i) => {
+      document.querySelectorAll('[data-done]').forEach((item, i) => {
         function deleteTaskLocal(e) {
           e.preventDefault();
           closeModal(deleteModal);
-          progresTodoList.splice(i, 1);
-          updateProgresList();
-          localStorage.setItem('progres', JSON.stringify(progresTodoList));
+          doneTodoList.splice(i, 1);
+          updateDoneList();
+          localStorage.setItem('done', JSON.stringify(doneTodoList));
           deleteOn.removeEventListener('click', deleteTaskLocal);
         }
         item.addEventListener('click', function (e) {
@@ -198,108 +305,15 @@ window.addEventListener('DOMContentLoaded', () => {
           });
         });
       });
-
-      /*Завешеня виконання справи */
-      document.querySelectorAll('[data-done-task]').forEach((item, i) => {
-        function doneTask(e) {
-          e.preventDefault();
-          closeModal(doneModal);
-          progresTodoList.splice(i, 1);
-          updateProgresList();
-          localStorage.setItem('progres', JSON.stringify(progresTodoList));
-          doneBtn.removeEventListener('click', doneTask);
-        }
-        item.addEventListener('click', function (e) {
-          e.preventDefault();
-          showModal(doneModal);
-          doneBtn.addEventListener('click', doneTask);
-          closeModalDeleteBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            closeModal(doneModal);
-            item.removeEventListener('click', doneTask);/*перевірка на відхилення */
-          });
-        });
-      });
     });
   }
 
 
   /*змінні для видалення*/
-  const deleteBtnAll = document.querySelectorAll('[data-deleteAll]'),
-    deleteBtnInProgress = document.querySelectorAll('[data-inProgress]'),
-    deleteBtnDone = document.querySelectorAll('[data-done]'),
-    doneLi = document.querySelectorAll('.done-li'),
-    inProgres = document.querySelectorAll('.in-progress'),
-    deleteModal = document.querySelector('.delete-modal'),
+  const deleteModal = document.querySelector('.delete-modal'),
     runModal = document.querySelector('.run-modal'),
     runBtn = document.querySelector('.run-on'),
     closeRunModal = document.querySelector('[data-close-run-modal]');
-
-
-
-
-  /*Видалення Завдань */
-  // deleteBtnAll.forEach((item, i) => {
-  //   function deleteTaskLocal(e) {
-  //     e.preventDefault();
-  //     deleteLi(allLi, i);
-  //     closeModal(deleteModal);
-  //   }
-  //   item.addEventListener('click', function (e) {
-  //     e.preventDefault();
-  //     showModal(deleteModal);
-  //     deleteOn.addEventListener('click', deleteTaskLocal);
-  //     closeModalDeleteBtn.addEventListener('click', function (e) {
-  //       e.preventDefault();
-  //       closeModal(deleteModal);
-  //       deleteOn.removeEventListener('click', deleteTaskLocal);/*перевірка на відхилення додання завдання*/
-  //     });
-  //   });
-  // });
-
-  /*Видалення Завдань які виконуються */
-  // deleteBtnInProgress.forEach((item, i) => {
-  //   function deleteTaskLocal(e) {
-  //     e.preventDefault();
-  //     deleteLi(inProgres, i);
-  //     closeModal(deleteModal);
-  //   }
-  //   item.addEventListener('click', function (e) {
-  //     e.preventDefault();
-  //     const target = e.target;
-  //     if (target === deleteBtnInProgress[i]) {
-  //       showModal(deleteModal);
-  //       deleteOn.addEventListener('click', deleteTaskLocal);
-  //       closeModalDeleteBtn.addEventListener('click', function (e) {
-  //         e.preventDefault();
-  //         closeModal(deleteModal);
-  //         deleteOn.removeEventListener('click', deleteTaskLocal);
-  //       });
-  //     }
-  //   });
-  // });
-
-  // /*Видалення виконанених завдань*/
-  // deleteBtnDone.forEach((item, i) => {
-  //   function deleteTaskLocal(e) {
-  //     e.preventDefault();
-  //     deleteLi(doneLi, i);
-  //     closeModal(deleteModal);
-  //   }
-  //   item.addEventListener('click', function (e) {
-  //     e.preventDefault();
-  //     const target = e.target;
-  //     if (target === deleteBtnDone[i]) {
-  //       showModal(deleteModal);
-  //       deleteOn.addEventListener('click', deleteTaskLocal);
-  //       closeModalDeleteBtn.addEventListener('click', function (e) {
-  //         e.preventDefault();
-  //         closeModal(deleteModal);
-  //         deleteOn.removeEventListener('click', deleteTaskLocal);
-  //       });
-  //     }
-  //   });
-  // });
 
   /*Функ видалення завдання */
   function deleteLi(list, index) {
@@ -307,22 +321,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       list[index].remove();
     }, 600);
-
   }
-
-
-  /*функ початку виконання завдання*/
-
-
-
-
-
-
-
-
-
-
-
 
 
   /////Modal logik
@@ -372,7 +371,5 @@ window.addEventListener('DOMContentLoaded', () => {
   modalClose.addEventListener('click', () => {
     closeModal(modal);
   });
-
-
 
 });
