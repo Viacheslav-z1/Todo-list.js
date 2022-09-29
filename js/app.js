@@ -40,6 +40,10 @@ window.addEventListener('DOMContentLoaded', () => {
   let count;
   count = todoList.length;
 
+  updateList();
+  updateProgresList();
+  updateDoneList();
+
   //підргузка данних
 
   if (localStorage.getItem('todo')) {
