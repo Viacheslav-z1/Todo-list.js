@@ -317,11 +317,11 @@ filter: blur(2px);
 }
 .fade-out {
   animation-name: fade-out;
-  animation-duration: 0.6s;
+  animation-duration: 0.3s;
 }
 .fade-out-long{
   animation-name: fade-out;
-  animation-duration: 1.3s;
+  animation-duration: 1.5s;
 }
 
 @keyframes fade-out {

@@ -9,7 +9,9 @@ window.addEventListener('DOMContentLoaded', () => {
     inProgresList = document.querySelector('.in-progres-list'),
     doneList = document.querySelector('.done-list'),
     doneModal = document.querySelector('.done-modal'),
-    helloModal = document.querySelector('.big-modal');
+    helloModal = document.querySelector('.big-modal'),
+    doneBtn = document.querySelector('[data-close-done-modal]'),
+    finishBtn = document.querySelector('[data-done-task]');
   let nameTodo = document.querySelector('[data-name]');
   let textTodo = document.querySelector('[data-text]');
 
@@ -28,9 +30,9 @@ window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     setTimeout(() => {
       helloModal.classList.add('hide');
-    }, 1200);
+    }, 1400);
     helloModal.classList.add('fade-out-long');
-  }, 1500);
+  }, 1600);
 
   let todoList = [];
   let progresTodoList = [];
@@ -164,7 +166,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
-
   function updateProgresList() {
     inProgresList.innerHTML = '';
     if (progresTodoList) {
@@ -215,13 +216,13 @@ window.addEventListener('DOMContentLoaded', () => {
         deleteOn.addEventListener('click', deleteTaskLocal);
         closeModalDeleteBtn.addEventListener('click', function (e) {
           e.preventDefault();
-          closeModal(doneModal);
+          closeModal(deleteModal);
           item.removeEventListener('click', deleteTaskLocal);/*перевірка на відхилення додання завдання*/
         });
       });
     });
 
-    /*Завешеня  справи */
+    /*Завешершення  справи */
     document.querySelectorAll('[data-done-task]').forEach((item, i) => {
       function addTaskToInProgress(e) {
         e.preventDefault();
@@ -230,21 +231,19 @@ window.addEventListener('DOMContentLoaded', () => {
         progresTodoList.splice(i, 1);
         updateProgresList();
         updateDoneList();
-        closeModal(runModal);
-        runBtn.removeEventListener('click', addTaskToInProgress);
+        closeModal(doneModal);
+        finishBtn.removeEventListener('click', addTaskToInProgress);
         localStorage.setItem('done', JSON.stringify(doneTodoList));
         localStorage.setItem('progres', JSON.stringify(progresTodoList));
       }
       item.addEventListener('click', (e) => {
         e.preventDefault();
-        showModal(runModal);
-        console.log(todoList);
-        console.log(progresTodoList);
-        runBtn.addEventListener('click', addTaskToInProgress);
-        closeRunModal.addEventListener('click', (e) => {
+        showModal(doneModal);
+        finishBtn.addEventListener('click', addTaskToInProgress);
+        doneBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          closeModal(runModal);
-          runBtn.removeEventListener('click', addTaskToInProgress);
+          closeModal(doneModal);
+          finishBtn.removeEventListener('click', addTaskToInProgress);
         });
       });
     });
@@ -297,15 +296,13 @@ window.addEventListener('DOMContentLoaded', () => {
           deleteOn.addEventListener('click', deleteTaskLocal);
           closeModalDeleteBtn.addEventListener('click', function (e) {
             e.preventDefault();
-            closeModal(doneModal);
+            closeModal(deleteModal);
             item.removeEventListener('click', deleteTaskLocal);/*перевірка на відхилення додання завдання*/
           });
         });
       });
     });
   }
-
-
 
 
   /*Функ видалення завдання */
@@ -316,9 +313,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 600);
   }
 
-
   /////Modal logik
-
 
 
   function showModal(modalWindow) {
@@ -328,7 +323,7 @@ window.addEventListener('DOMContentLoaded', () => {
     blur.classList.add('blur');
     setTimeout(() => {
       modalWindow.classList.remove('fade');
-    }, 600);
+    }, 300);
     body.style.overflow = 'hidden';
   }
 
@@ -338,11 +333,11 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       modalWindow.classList.add('hide');
       modalWindow.classList.remove('show');
-    }, 550);
+    }, 250);
 
     setTimeout(() => {
       modalWindow.classList.remove('fade-out');
-    }, 600);
+    }, 300);
     body.style.overflow = '';
   }
 
