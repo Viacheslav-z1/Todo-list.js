@@ -19,26 +19,25 @@ window.addEventListener('DOMContentLoaded', () => {
   let count;
   count = todoList.length;
 
-  //підргузка данниї
+  //підргузка данних
   if (localStorage.getItem('todo')) {
     todoList = JSON.parse(localStorage.getItem('todo'));
     updateList();
     updateProgresList();
     updateDoneList();
-  } else {
-    if (todoList.length == 0) {
+  } else if (todoList.length == 0) {
       const message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'У вас немає завдань, натисніть + щоб додати';
       allListParent.append(message);
     }
-  }
+  
 
   if (localStorage.getItem('progres')) {
     progresTodoList = JSON.parse(localStorage.getItem('progres'));
     updateProgresList();
   } else if (progresTodoList.length == 0) {
-      const message = document.createElement('p');
+      message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'Почніть додавати справи, щоб їх виконувати';
       inProgresList.append(message);
@@ -50,7 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
     updateProgresList();
     updateDoneList();
   } else if (doneTodoList.length == 0) {
-      const message = document.createElement('p');
+     message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'У Вас немає виконаних справ';
       doneList.append(message);
