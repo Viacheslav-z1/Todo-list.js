@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('progres')) {
     progresTodoList = JSON.parse(localStorage.getItem('progres'));
     updateProgresList();
-  } else if (progresTodoList.length == 0) {
+   } else if (progresTodoList.length == 0) {
       message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'Почніть додавати справи, щоб їх виконувати';
@@ -77,7 +77,7 @@ window.addEventListener('DOMContentLoaded', () => {
   function updateList() {
     allListParent.innerHTML = '';
     let todoLi = '';
-    if (todoList.length == 0) {
+    if (todoList) {
       const message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'У вас немає завдань, натисніть + щоб додати';
@@ -165,7 +165,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function updateProgresList() {
     inProgresList.innerHTML = '';
-    if (progresTodoList.length == 0) {
+    if (progresTodoList) {
       const message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'Почніть додавати справи, щоб їх виконувати';
@@ -250,7 +250,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function updateDoneList() {
     doneList.innerHTML = '';
-    if (doneTodoList.length == 0) {
+    if (doneTodoList) {
       const message = document.createElement('p');
       message.classList.add('message');
       message.innerHTML = 'У Вас немає виконаних справ';
