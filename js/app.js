@@ -188,7 +188,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <div class="content__todo-top__wrapper">
               <p class="content__todo-name">${item.todoName}</p>
               <div class="content__todo-btns">
-                <button data-done-task class="content__todo-go btns">Завершити</button>
+                <button data-done-task-btn class="content__todo-go btns">Завершити</button>
                 <button data-inProgress class="content__todo-delete btns">Видалити</button>
                 <div class="content__todo-status_ball progress"></div>
               </div>
@@ -227,7 +227,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     /*Завешершення  справи */
-    document.querySelectorAll('[data-done-task]').forEach((item, i) => {
+    document.querySelectorAll('[data-done-task-btn]').forEach((item, i) => {
       function addTaskToInProgress(e) {
         e.preventDefault();
         let copyProgressObj = JSON.parse(JSON.stringify(progresTodoList[i]));
